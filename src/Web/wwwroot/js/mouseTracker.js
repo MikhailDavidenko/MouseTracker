@@ -16,7 +16,7 @@ function startTrackingMouse() {
 }
 
 function sendData(data) {
-    fetch('/api/v1/MouseCoordinate', {
+    fetch('/api/v1/MouseCoordinates', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -31,4 +31,6 @@ function sendData(data) {
             }
         })
         .catch(error => console.error('Ошибка:', error));
+    
+    mouseData = [];
 }
