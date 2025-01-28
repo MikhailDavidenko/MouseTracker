@@ -15,6 +15,9 @@ internal sealed class MouseCoordinatesService : IMouseCoordinatesService
     
     public async Task<MouseCoordinate> AddAsync(List<CoordinateWithTime> coordinate, CancellationToken cancellationToken)
     {
+        if(coordinate is null || coordinate.Count == 0)
+            throw new ArgumentNullException(nameof(coordinate), "Список координат не может быть пустым");
+        
         var coordinatesJson = JsonSerializer.Serialize(coordinate);
         
         var mouseCoordinate = MouseCoordinate.Create(coordinatesJson);
