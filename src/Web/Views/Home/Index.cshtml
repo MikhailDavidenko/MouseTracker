@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Mouse Tracker";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/css/site.css" type="text/css">
+    <title>@ViewData["Title"]</title>
+    <script src="~/js/mouseTracker.js"></script>
+</head>
+<body>
+    <h1>Mouse Tracker</h1>
+    <button id="sendData">Отправить данные</button>
+
+    <script>
+            startTrackingMouse();
+    </script>
+</body>
+</html>

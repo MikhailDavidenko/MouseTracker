@@ -1,0 +1,14 @@
+html {
+  font-size: 14px;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  text-align: center;
+  margin-top: 40vh;
+}
