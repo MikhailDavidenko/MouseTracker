@@ -18,7 +18,7 @@ public sealed class MouseCoordinatesController : ControllerBase
 
     [HttpPost]
     public async Task<MouseCoordinatesResponse> AddMouseCoordinatesAsync(
-        [FromBody] List<CoordinateWithTime>? coordinates,
+        [FromBody] List<CoordinateWithTime> coordinates,
         CancellationToken cancellationToken)
     {
         if(coordinates is null || coordinates.Count == 0)
