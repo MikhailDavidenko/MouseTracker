@@ -10,6 +10,16 @@ builder.Services.AddProblemDetails();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
+// Для примера, чтобы тестировать работу фронта и бекенда по отдельности, разрешаем запросы с любого источника
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy => 
+            policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+});
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +34,8 @@ builder.Services.AddBusinessServices();
 var app = builder.Build();
 
 app.UseExceptionHandler();
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MouseTracker</title>
+</head>
+<body>
+    <h1>Mouse Tracker</h1>
+    <button id="sendData">Отправить данные</button>
+
+    <script>
+        let mouseData = [];
+
+function startTrackingMouse() {
+    document.addEventListener('mousemove', (event) => {
+        const timestamp = new Date();
+        mouseData.push({
+            T: timestamp.toISOString(),
+            X: event.clientX,
+            Y: event.clientY
+        });
+    });
+
+    document.getElementById('sendData').addEventListener('click', () => {
+        sendData(mouseData);
+    });
+}
+
+function sendData(data) {
+    fetch('http://localhost:5049/api/v1/MouseCoordinates', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log('Данные успешно отправлены');
+            } else {
+                console.error('Ошибка при отправке данных');
+            }
+        })
+        .catch(error => console.error('Ошибка:', error));
+    
+    mouseData = [];
+}
+
+startTrackingMouse();
+    </script>
+</body>
+</html>
